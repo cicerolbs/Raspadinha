@@ -1,7 +1,6 @@
 git add .
-git commit -m "serverless1"
+git commit -m "cadvendedores"
 git push origin main
 
 
-https://chat.openai.com/share/7757bb21-9497-485a-8b06-24351153e512
-
+https://chat.openai.com/share/81c49933-524d-47fb-a68a-c4dd1b47e0fd
