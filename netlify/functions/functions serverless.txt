@@ -1,0 +1,1 @@
+https://resplendent-dango-9316fa.netlify.app/.netlify/functions/hello
