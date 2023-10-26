@@ -1,38 +1,46 @@
 const { Client } = require('pg');
 
-exports.handler = async function(event, context) {
-  // Parse the incoming request body
-  const body = JSON.parse(event.body);
-  const { nome, email, senha } = body;
-
-  // Connect to the database
+exports.handler = async (event, context) => {
   const client = new Client({
     connectionString: process.env.DATABASE_URL,
     ssl: {
-      rejectUnauthorized: false
-    }
+      rejectUnauthorized: false,
+    },
   });
-  await client.connect();
+
+  client.connect();
+
+  let body;
+  try {
+    body = JSON.parse(event.body);
+  } catch (e) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ message: 'Invalid JSON format' }),
+    };
+  }
+
+  if (!body || !body.name || !body.email) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ message: 'Missing required fields' }),
+    };
+  }
+
+  const { name, email } = body;
 
   try {
-    // Insert the new vendedor into the database
-    const query = 'INSERT INTO vendedores(nome, email, senha) VALUES($1, $2, $3) RETURNING *';
-    const values = [nome, email, senha];
-    const result = await client.query(query, values);
-
-    // Close the database connection
-    await client.end();
-
+    const res = await client.query('INSERT INTO vendedores(name, email) VALUES($1, $2) RETURNING *', [name, email]);
+    client.end();
     return {
       statusCode: 200,
-      body: JSON.stringify({ message: 'Vendedor created successfully', vendedor: result.rows[0] })
+      body: JSON.stringify({ message: 'Vendedor created successfully', vendedor: res.rows[0] }),
     };
-  } catch (error) {
-    console.error('Database error:', error);
-    await client.end();
+  } catch (err) {
+    client.end();
     return {
       statusCode: 500,
-      body: JSON.stringify({ message: 'Internal Server Error' })
+      body: JSON.stringify({ message: 'Database Error', error: err }),
     };
   }
 };
