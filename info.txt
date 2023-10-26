@@ -1,1 +1,7 @@
-none
+git add .
+git commit -m "Descrição das alterações"
+git push origin main
+
+
+https://chat.openai.com/share/7757bb21-9497-485a-8b06-24351153e512
+
