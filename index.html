@@ -74,8 +74,17 @@
   0% { transform: translate(0, 0); opacity: 1; }
   100% { transform: translate(-100px, 100px); opacity: 0; }
 }
+/* CSS */
+/* Animações */
+@keyframes moveParticleLose1 {
+  0% { transform: translate(0, 0); opacity: 1; }
+  100% { transform: translate(100px, -100px); opacity: 0; }
+}
 
-
+@keyframes moveParticleLose2 {
+  0% { transform: translate(0, 0); opacity: 1; }
+  100% { transform: translate(-100px, -100px); opacity: 0; }
+}
     </style>
 </head>
 <body>
@@ -229,7 +238,20 @@ function particleAnimationWin() {
 
 // Animação de partículas para derrota
 function particleAnimationLose() {
-    // Implemente aqui a animação de partículas para derrota
+  const particle1 = document.getElementById('particle1');
+  const particle2 = document.getElementById('particle2');
+  
+  // Reset any existing animations
+  particle1.style.animation = 'none';
+  particle2.style.animation = 'none';
+  
+  // Force reflow, allowing the animation to restart
+  void particle1.offsetWidth;
+  void particle2.offsetWidth;
+  
+  // Apply the losing animations
+  particle1.style.animation = 'moveParticleLose1 2s ease-out';
+  particle2.style.animation = 'moveParticleLose2 2s ease-out';
 }
 
 canvas.addEventListener('mouseup', () => {
