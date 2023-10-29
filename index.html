@@ -152,8 +152,10 @@
         }
     });
 
-    // Função para ajustar o tamanho do canvas
-    function adjustCanvasSize() {
+ // ... (o resto do seu código permanece o mesmo)
+
+// Função para ajustar o tamanho do canvas
+function adjustCanvasSize() {
     const scratchArea = document.getElementById('scratchArea');
     const canvas = document.getElementById('canvas');
     
@@ -169,15 +171,17 @@
     // Carregar a imagem salva e desenhá-la de volta no canvas
     const img = new Image();
     img.onload = function() {
+        ctx.globalCompositeOperation = 'source-over';
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        
+        // Preencher qualquer área nova com a cor 'silver'
+        ctx.fillStyle = 'silver';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Restaurar o modo de composição para permitir a raspagem
+        ctx.globalCompositeOperation = 'destination-out';
     };
     img.src = savedState;
-    
-    // Preencher qualquer área nova com a cor 'silver'
-    ctx.globalCompositeOperation = 'source-over';
-    ctx.fillStyle = 'silver';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.globalCompositeOperation = 'destination-out';
 }
 
 // Ajustar o tamanho inicial do canvas
@@ -185,6 +189,7 @@ adjustCanvasSize();
 
 // Ajustar o tamanho do canvas quando a janela for redimensionada
 window.addEventListener('resize', adjustCanvasSize);
+
 
 </script>
 
