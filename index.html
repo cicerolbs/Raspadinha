@@ -55,6 +55,26 @@
      .fade-in {
   animation: fadeIn 1s ease-in-out;
     }
+        /* CSS */
+.particle {
+  width: 10px;
+  height: 10px;
+  background-color: gold;
+  position: absolute;
+  opacity: 0;
+}
+
+/* Animações */
+@keyframes moveParticle1 {
+  0% { transform: translate(0, 0); opacity: 1; }
+  100% { transform: translate(100px, 100px); opacity: 0; }
+}
+
+@keyframes moveParticle2 {
+  0% { transform: translate(0, 0); opacity: 1; }
+  100% { transform: translate(-100px, 100px); opacity: 0; }
+}
+
 
     </style>
 </head>
@@ -70,6 +90,13 @@
         Este sistema é um protótipo, está em desenvolvimento e é apenas para testes.
     </div>
 </div>
+    <!-- HTML -->
+<div id="particle-container">
+  <div class="particle" id="particle1"></div>
+  <div class="particle" id="particle2"></div>
+  <!-- Adicione mais partículas conforme necessário -->
+</div>
+
 <script>
   // Variáveis e configurações iniciais
 let isDrawing = false;
@@ -195,6 +222,8 @@ window.addEventListener('load', () => {
 });
 // Animação de partículas para vitória
 function particleAnimationWin() {
+    document.getElementById('particle1').style.animation = 'moveParticle1 2s ease-out';
+    document.getElementById('particle2').style.animation = 'moveParticle2 2s ease-out';
     // Implemente aqui a animação de partículas para vitória
 }
 
