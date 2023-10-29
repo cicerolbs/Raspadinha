@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-   <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Raspadinha Virtual</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -50,7 +50,7 @@
     <h2>Raspadinha Virtual</h2>
     <div id="scratchArea">
         <div id="result"></div>
-        <canvas id="canvas" width="300" height="50"></canvas>
+        <canvas id="canvas"></canvas>
     </div>
     <div class="prototype-message">
         Este sistema é um protótipo, está em desenvolvimento e é apenas para testes.
@@ -151,6 +151,22 @@
             }
         }
     });
+    // Função para ajustar o tamanho do canvas
+    function adjustCanvasSize() {
+        const scratchArea = document.getElementById('scratchArea');
+        const canvas = document.getElementById('canvas');
+        canvas.width = scratchArea.offsetWidth;
+        canvas.height = scratchArea.offsetHeight;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = 'silver';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+
+    // Ajustar o tamanho inicial do canvas
+    adjustCanvasSize();
+
+    // Ajustar o tamanho do canvas quando a janela for redimensionada
+    window.addEventListener('resize', adjustCanvasSize);
   
 
 </script>
