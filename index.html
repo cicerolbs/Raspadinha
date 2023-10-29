@@ -120,9 +120,15 @@ function startDrawing(event) {
     draw(event);
 }
 
-// Função para desenhar (raspar)
+// Função para desenhar (raspar)++
+let lastDrawTime = 0; // Adicione esta linha antes da função draw
+
 function draw(event) {
     if (!isDrawing) return;
+    // Limitar a taxa de atualização do desenho
+  const currentTime = performance.now();
+  if (currentTime - lastDrawTime < 16) return; // ~60 FPS
+  lastDrawTime = currentTime;
     ctx.globalCompositeOperation = 'destination-out';
     ctx.beginPath();
     let x = event.offsetX;
@@ -189,6 +195,18 @@ canvas.addEventListener('mouseup', stopDrawing);
 canvas.addEventListener('mouseout', stopDrawing);
 
 // Adicionando suporte a eventos de toque para dispositivos móveis
+canvas.addEventListener('touchstart', function(event) {
+  event.preventDefault(); // Prevenir rolagem
+  startDrawing(event);
+});
+canvas.addEventListener('touchmove', function(event) {
+  event.preventDefault(); // Prevenir rolagem
+  draw(event);
+});
+canvas.addEventListener('touchend', function(event) {
+  event.preventDefault(); // Prevenir rolagem
+  stopDrawing();
+});
 canvas.addEventListener('touchstart', startDrawing);
 canvas.addEventListener('touchmove', draw);
 canvas.addEventListener('touchend', stopDrawing);
