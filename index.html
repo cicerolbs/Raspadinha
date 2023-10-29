@@ -151,22 +151,40 @@
             }
         }
     });
-    // Função para ajustar o tamanho do canvas
-    function adjustCanvasSize() {
-        const scratchArea = document.getElementById('scratchArea');
-        const canvas = document.getElementById('canvas');
-        canvas.width = scratchArea.offsetWidth;
-        canvas.height = scratchArea.offsetHeight;
-        const ctx = canvas.getContext('2d');
-        ctx.fillStyle = 'silver';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-    }
+   // Função para ajustar o tamanho do canvas
+function adjustCanvasSize() {
+    const scratchArea = document.getElementById('scratchArea');
+    const canvas = document.getElementById('canvas');
+    
+    // Salvar o estado atual do canvas
+    const tempCanvas = document.createElement('canvas');
+    const tempCtx = tempCanvas.getContext('2d');
+    tempCanvas.width = canvas.width;
+    tempCanvas.height = canvas.height;
+    tempCtx.drawImage(canvas, 0, 0);
+    
+    // Atualizar o tamanho do canvas
+    canvas.width = scratchArea.offsetWidth;
+    canvas.height = scratchArea.offsetHeight;
+    
+    const ctx = canvas.getContext('2d');
+    
+    // Restaurar o estado anterior do canvas
+    ctx.drawImage(tempCanvas, 0, 0, canvas.width, canvas.height);
+    
+    // Preencher qualquer área nova com a cor 'silver'
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.fillStyle = 'silver';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.globalCompositeOperation = 'destination-out';
+}
 
-    // Ajustar o tamanho inicial do canvas
-    adjustCanvasSize();
+// Ajustar o tamanho inicial do canvas
+adjustCanvasSize();
 
-    // Ajustar o tamanho do canvas quando a janela for redimensionada
-    window.addEventListener('resize', adjustCanvasSize);
+// Ajustar o tamanho do canvas quando a janela for redimensionada
+window.addEventListener('resize', adjustCanvasSize);
+
   
 
 </script>
