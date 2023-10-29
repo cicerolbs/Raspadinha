@@ -152,8 +152,6 @@
         }
     });
 
- // ... (o resto do seu código permanece o mesmo)
-
 // Função para ajustar o tamanho do canvas
 function adjustCanvasSize() {
     const scratchArea = document.getElementById('scratchArea');
@@ -173,10 +171,6 @@ function adjustCanvasSize() {
     img.onload = function() {
         ctx.globalCompositeOperation = 'source-over';
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-        
-        // Preencher qualquer área nova com a cor 'silver'
-        ctx.fillStyle = 'silver';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
         
         // Restaurar o modo de composição para permitir a raspagem
         ctx.globalCompositeOperation = 'destination-out';
