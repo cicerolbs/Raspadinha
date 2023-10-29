@@ -1,0 +1,7 @@
+a devida instrução deve ser respeitada. quando fizer qualquer parte do codigo vc pare e espere o meu comandoe de continue
+o codigo não esta completo com todos os campos. escolher bandeira, valor do limite, e selecionar parcelas. me faça todas as modificaç~ies sempre me enviando os codigos completos . sempre baseado no codigo original que te passei. nao saia disso e a partir dai fazer as alterações que vc sugeriu e que discutimos. Não se esqueça que nao se deve mudar a estrutura mas apenas melhorar ela. a questao de selecionar as parcelas por exemplo, deixar como select. o restante vc pode mudar de acordo com as melhorias da lista que vc me forneceu retirando apenas a taxa de juros dinamica. ao terminar cada codigo eu sugiro que pause e espere o meu comando
+LEMBRE SE LEMBRE SE LEMBRE SE. EM CADA PARTE DO PROCESSO QUANDO TERMINAR UM ARQUIVO VC PARA E ESPERE O MEU COMANDO !! ESPERE O MEU COMANDO. SEMPRE QUE TERMINAR UM ARQUIVO AGUARDE EU DIZER "CONTINUE"
+
+quando vc fizer o arquivo index.html, quando terminar ele vc apenas pare e me espere eu escrever "continue"
+quando vc fizer o css e terminar, vc pare novamente e me espere eu digitar "continue"
+quando vc fizer o script.js e terminar vc apenas pare a conversa e me espere eu digitar "continue"

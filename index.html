@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raspadinha Virtual</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+     <style>
+        #scratchArea {
+            width: 100%;
+            max-width: 300px;
+            height: 50px;
+            position: relative;
+            cursor: pointer;
+            margin: 0 auto;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        @media screen and (max-width: 768px) {
+            #scratchArea {
+                height: 300px;
+            }
+            #result {
+                font-size: 40px;
+            }
+        }
+        #result {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20px;
+            white-space: nowrap;
+            z-index: 1;
+            color: black;
+        }
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+        }
+        .prototype-message {
+            margin-top: 20px;
+            font-size: 14px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5 text-center">
+    <h2>Raspadinha Virtual</h2>
+    <div id="scratchArea">
+        <div id="result"></div>
+        <canvas id="canvas" width="300" height="50"></canvas>
+    </div>
+    <div class="prototype-message">
+        Este sistema é um protótipo, está em desenvolvimento e é apenas para testes.
+    </div>
+</div>
+<script>
+    let isDrawing = false;
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = 'silver';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    function startDrawing(event) {
+        isDrawing = true;
+        draw(event);
+    }
+
+    function draw(event) {
+        if (!isDrawing) return;
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.beginPath();
+        let x = event.offsetX;
+        let y = event.offsetY;
+        if (event.type === 'touchmove') {
+            const rect = canvas.getBoundingClientRect();
+            x = event.touches[0].clientX - rect.left;
+            y = event.touches[0].clientY - rect.top;
+        }
+        ctx.arc(x, y, 10, 0, Math.PI * 2);
+        ctx.fill();
+    }
+
+    function stopDrawing() {
+        isDrawing = false;
+    }
+
+    function generateNumbers() {
+        const possibleNumbers = [20, 50, 100, 500, 1000, 2000];
+        let scratchNumbers = [];
+
+        while (scratchNumbers.length < 6) {
+            let num = possibleNumbers[Math.floor(Math.random() * possibleNumbers.length)];
+            if (scratchNumbers.filter(n => n === num).length < 3) {
+                scratchNumbers.push(num);
+            }
+        }
+
+        return scratchNumbers;
+    }
+
+    function checkWin(numbers) {
+        let counts = {};
+
+        for (let num of numbers) {
+            if (!counts[num]) {
+                counts[num] = 1;
+            } else {
+                counts[num]++;
+            }
+        }
+
+        for (let num in counts) {
+            if (counts[num] === 3) {
+                return num;
+            }
+        }
+
+        return null;
+    }
+    const numbers = generateNumbers();
+    const resultDiv = document.getElementById('result');
+    resultDiv.innerHTML = numbers.join(' ');
+
+    canvas.addEventListener('mousedown', startDrawing);
+    canvas.addEventListener('mousemove', draw);
+    canvas.addEventListener('mouseup', stopDrawing);
+    canvas.addEventListener('mouseout', stopDrawing);
+
+    // Adicionando suporte a eventos de toque para dispositivos móveis
+    canvas.addEventListener('touchstart', startDrawing);
+    canvas.addEventListener('touchmove', draw);
+    canvas.addEventListener('touchend', stopDrawing);
+
+    canvas.addEventListener('mouseup', () => {
+        let nonTransparentPixels = 0;
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+        for (let i = 0; i < imageData.length; i += 4) {
+            if (imageData[i + 3] > 0) {
+                nonTransparentPixels++;
+            }
+        }
+        if (nonTransparentPixels < (canvas.width * canvas.height * 0.2)) {
+            const winValue = checkWin(numbers);
+            if (winValue) {
+                setTimeout(() => alert('Parabéns! Você ganhou ' + winValue + ' reais!'), 500);
+            } else {
+                setTimeout(() => alert('Tente novamente.'), 500);
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
