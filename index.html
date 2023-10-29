@@ -42,6 +42,20 @@
             font-size: 14px;
             color: red;
         }
+
+        @keyframes fadeIn {
+        from {
+          opacity: 0;
+       }
+       to {
+    opacity: 1;
+       }
+       }
+
+     .fade-in {
+  animation: fadeIn 1s ease-in-out;
+    }
+
     </style>
 </head>
 <body>
@@ -183,6 +197,13 @@ adjustCanvasSize();
 
 // Ajustar o tamanho do canvas quando a janela for redimensionada
 window.addEventListener('resize', adjustCanvasSize);
+    
+//anim de inicio
+window.addEventListener('load', () => {
+  const scratchArea = document.getElementById('scratchArea');
+  scratchArea.classList.add('fade-in');
+});
+
 
 
 </script>
