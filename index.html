@@ -45,9 +45,7 @@
     </style>
 </head>
 <body>
-<div id="rotateDevice" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.8); color:white; font-size:24px; text-align:center; padding-top:20%;">
-    Por favor, vire seu dispositivo para o modo paisagem.
-</div>
+
 <div class="container mt-5 text-center">
     <h2>Raspadinha Virtual</h2>
     <div id="scratchArea">
@@ -153,28 +151,7 @@
             }
         }
     });
-   // Função para verificar a orientação da tela
-function checkOrientation() {
-    const orientation = window.innerWidth > window.innerHeight ? "Landscape" : "Portrait";
-    const rotateDevice = document.getElementById('rotateDevice');
-    const canvas = document.getElementById('canvas');
-    const resultDiv = document.getElementById('result');
-    if (orientation === "Landscape") {
-        rotateDevice.style.display = "none";
-        // Ajustar o tamanho da área de raspagem e dos números aqui
-        canvas.width = window.innerWidth * 0.8; // 80% da largura da tela
-        canvas.height = window.innerHeight * 0.2; // 20% da altura da tela
-        resultDiv.style.fontSize = (window.innerHeight * 0.2) + "px"; // Ajustar o tamanho da fonte com base na altura da tela
-    } else {
-        rotateDevice.style.display = "block";
-    }
-}
-
-// Verificar a orientação inicial
-checkOrientation();
-
-// Adicionar um ouvinte de evento para mudanças de orientação
-window.addEventListener("resize", checkOrientation);
+  
 
 </script>
 
