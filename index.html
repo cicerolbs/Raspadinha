@@ -157,8 +157,14 @@
 function checkOrientation() {
     const orientation = window.innerWidth > window.innerHeight ? "Landscape" : "Portrait";
     const rotateDevice = document.getElementById('rotateDevice');
+    const canvas = document.getElementById('canvas');
+    const resultDiv = document.getElementById('result');
     if (orientation === "Landscape") {
         rotateDevice.style.display = "none";
+        // Ajustar o tamanho da área de raspagem e dos números aqui
+        canvas.width = window.innerWidth * 0.8; // 80% da largura da tela
+        canvas.height = window.innerHeight * 0.2; // 20% da altura da tela
+        resultDiv.style.fontSize = (window.innerHeight * 0.2) + "px"; // Ajustar o tamanho da fonte com base na altura da tela
     } else {
         rotateDevice.style.display = "block";
     }
