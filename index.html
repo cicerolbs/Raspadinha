@@ -71,139 +71,72 @@
     </div>
 </div>
 <script>
-    let isDrawing = false;
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
-    ctx.fillStyle = 'silver';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+   let isDrawing = false;
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+ctx.fillStyle = 'silver';
+ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    function startDrawing(event) {
-        isDrawing = true;
-        draw(event);
-    }
-
-    function draw(event) {
-        if (!isDrawing) return;
-        ctx.globalCompositeOperation = 'destination-out';
-        ctx.beginPath();
-        let x = event.offsetX;
-        let y = event.offsetY;
-        if (event.type === 'touchmove') {
-            const rect = canvas.getBoundingClientRect();
-            x = event.touches[0].clientX - rect.left;
-            y = event.touches[0].clientY - rect.top;
-        }
-        ctx.arc(x, y, 10, 0, Math.PI * 2);
-        ctx.fill();
-    }
-
-    function stopDrawing() {
-        isDrawing = false;
-    }
-
-    function generateNumbers() {
-        const possibleNumbers = [20, 50, 100, 500, 1000, 2000];
-        let scratchNumbers = [];
-
-        while (scratchNumbers.length < 6) {
-            let num = possibleNumbers[Math.floor(Math.random() * possibleNumbers.length)];
-            if (scratchNumbers.filter(n => n === num).length < 3) {
-                scratchNumbers.push(num);
-            }
-        }
-
-        return scratchNumbers;
-    }
-
-    function checkWin(numbers) {
-        let counts = {};
-
-        for (let num of numbers) {
-            if (!counts[num]) {
-                counts[num] = 1;
-            } else {
-                counts[num]++;
-            }
-        }
-
-        for (let num in counts) {
-            if (counts[num] === 3) {
-                return num;
-            }
-        }
-
-        return null;
-    }
-    const numbers = generateNumbers();
-    const resultDiv = document.getElementById('result');
-    resultDiv.innerHTML = numbers.join(' ');
-
-    canvas.addEventListener('mousedown', startDrawing);
-    canvas.addEventListener('mousemove', draw);
-    canvas.addEventListener('mouseup', stopDrawing);
-    canvas.addEventListener('mouseout', stopDrawing);
-
-    // Adicionando suporte a eventos de toque para dispositivos móveis
-    canvas.addEventListener('touchstart', startDrawing);
-    canvas.addEventListener('touchmove', draw);
-    canvas.addEventListener('touchend', stopDrawing);
-
-    canvas.addEventListener('mouseup', () => {
-        let nonTransparentPixels = 0;
-        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
-        for (let i = 0; i < imageData.length; i += 4) {
-            if (imageData[i + 3] > 0) {
-                nonTransparentPixels++;
-            }
-        }
-        if (nonTransparentPixels < (canvas.width * canvas.height * 0.2)) {
-            const winValue = checkWin(numbers);
-            if (winValue) {
-                setTimeout(() => alert('Parabéns! Você ganhou ' + winValue + ' reais!'), 500);
-            } else {
-                setTimeout(() => alert('Tente novamente.'), 500);
-            }
-        }
-    });
-
-// Função para ajustar o tamanho do canvas
-function adjustCanvasSize() {
-    const scratchArea = document.getElementById('scratchArea');
-    const canvas = document.getElementById('canvas');
-    
-    // Salvar o estado atual do canvas como uma imagem DataURL
-    const savedState = canvas.toDataURL();
-    
-    // Atualizar o tamanho do canvas
-    canvas.width = scratchArea.offsetWidth;
-    canvas.height = scratchArea.offsetHeight;
-    
-    const ctx = canvas.getContext('2d');
-    
-    // Carregar a imagem salva e desenhá-la de volta no canvas
-    const img = new Image();
-    img.onload = function() {
-        ctx.globalCompositeOperation = 'source-over';
-        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-        
-        // Restaurar o modo de composição para permitir a raspagem
-        ctx.globalCompositeOperation = 'destination-out';
-    };
-    img.src = savedState;
+function startDrawing(event) {
+    isDrawing = true;
+    draw(event);
 }
 
-// Ajustar o tamanho inicial do canvas
-adjustCanvasSize();
+function draw(event) {
+    if (!isDrawing) return;
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.beginPath();
+    let x = event.offsetX;
+    let y = event.offsetY;
+    if (event.type === 'touchmove') {
+        const rect = canvas.getBoundingClientRect();
+        x = event.touches[0].clientX - rect.left;
+        y = event.touches[0].clientY - rect.top;
+    }
+    ctx.arc(x, y, 10, 0, Math.PI * 2);
+    ctx.fill();
+}
 
-// Ajustar o tamanho do canvas quando a janela for redimensionada
-window.addEventListener('resize', adjustCanvasSize);
-    
-//anim de inicio
-window.addEventListener('load', () => {
-  const scratchArea = document.getElementById('scratchArea');
-  scratchArea.classList.add('fade-in');
+function stopDrawing() {
+    isDrawing = false;
+}
+
+// Function to show a winning animation
+function showWinAnimation(winValue) {
+  const winMessage = document.createElement('div');
+  winMessage.className = 'win-message';
+  winMessage.innerHTML = `Parabéns! Você ganhou ${winValue} reais!`;
+  document.body.appendChild(winMessage);
+  winMessage.classList.add('slide-in');
+}
+
+// Function to show a losing animation
+function showLoseAnimation() {
+  const loseMessage = document.createElement('div');
+  loseMessage.className = 'lose-message';
+  loseMessage.innerHTML = 'Tente novamente.';
+  document.body.appendChild(loseMessage);
+  loseMessage.classList.add('slide-in');
+}
+
+// Add event listener for mouseup to trigger win/lose animation
+canvas.addEventListener('mouseup', () => {
+  let nonTransparentPixels = 0;
+  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+  for (let i = 0; i < imageData.length; i += 4) {
+    if (imageData[i + 3] > 0) {
+      nonTransparentPixels++;
+    }
+  }
+  if (nonTransparentPixels < (canvas.width * canvas.height * 0.2)) {
+    const winValue = checkWin(numbers);
+    if (winValue) {
+      setTimeout(() => showWinAnimation(winValue), 500);
+    } else {
+      setTimeout(() => showLoseAnimation(), 500);
+    }
+  }
 });
-
 
 
 </script>
