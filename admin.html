@@ -46,13 +46,15 @@
         </div>
       </div>
     </div>
-    <!-- Formulário para adicionar usuários -->
-    <h2 class="mb-4">Adicionar Novo Usuário</h2>
-    <form>
-      <div class="form-group">
-        <label for="username">Nome de Usuário</label>
-        <input type="text" class="form-control" id="username">
-      </div>
+<!-- Seção de Pedidos de Acesso -->
+<div class="mt-4">
+  <h4>Pedidos de Acesso:</h4>
+  <ul id="accessRequestsList">
+    <!-- Os pedidos de acesso serão listados aqui -->
+  </ul>
+  <button class="btn btn-success">Aprovar</button>
+  <button class="btn btn-danger">Recusar</button>
+</div>
       <div class="form-group">
         <label for="accessLevel">Nível de Acesso</label>
         <select class="form-control" id="accessLevel">
@@ -112,7 +114,6 @@ document.getElementById('qrButton').addEventListener('click', function() {
     alert('Nenhum link gerado ainda!');
   }
 });
-
   </script>
 </body>
 </html>
