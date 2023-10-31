@@ -8,10 +8,11 @@
   <style>
     * {
       box-sizing: border-box;
-    }
-    body {
       margin: 0;
       padding: 0;
+    }
+    .container {
+      padding: 20px;
     }
     .footer {
       text-align: center;
@@ -19,6 +20,11 @@
       position: relative;
       bottom: 0;
       width: 100%;
+    }
+    input[type="number"] {
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 6px 12px;
     }
   </style>
 </head>
@@ -33,13 +39,23 @@
         <p>Descrição do produto aqui.</p>
         <label for="quantity">Escolher quantidade:</label>
         <input type="number" id="quantity" name="quantity" min="1" max="10">
-        <button type="button" class="btn btn-primary">Pagar com Pix</button>
+        <button type="button" class="btn btn-primary" onclick="validateQuantity()">Pagar com Pix</button>
       </div>
     </div>
   </div>
   <div class="footer">
     Raspadinha do Vale - Todos os direitos reservados
   </div>
+  <script>
+    function validateQuantity() {
+      const quantity = document.getElementById('quantity').value;
+      if (quantity < 1 || quantity > 10 || isNaN(quantity)) {
+        alert('Por favor, insira uma quantidade válida entre 1 e 10.');
+        return;
+      }
+      // Implementar a lógica de pagamento aqui
+    }
+  </script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
