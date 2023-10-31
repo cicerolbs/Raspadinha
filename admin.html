@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Painel Administrativo</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Painel Administrativo</h1>
+    
+    <!-- Dashboard -->
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Total de Raspadinhas Vendidas</h5>
+            <p class="card-text">0</p>
+          </div>
+        </div>
+      </div>
+      <!-- Você pode adicionar mais caixas aqui -->
+    </div>
+    
+    <!-- Formulário para adicionar usuários -->
+    <h2>Adicionar Novo Usuário</h2>
+    <form>
+      <div class="form-group">
+        <label for="username">Nome de Usuário</label>
+        <input type="text" class="form-control" id="username">
+      </div>
+      <div class="form-group">
+        <label for="accessLevel">Nível de Acesso</label>
+        <select class="form-control" id="accessLevel">
+          <option>Administrador</option>
+          <option>Vendedor</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Adicionar Usuário</button>
+    </form>
+  </div>
+  
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
