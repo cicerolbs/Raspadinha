@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Painel Administrativo</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
   <style>
     .dashboard-box {
       padding: 20px;
@@ -19,6 +20,9 @@
       background-color: red;
     }
     #generatedLink {
+      cursor: pointer;
+    }
+    .copy-icon {
       cursor: pointer;
     }
   </style>
@@ -60,6 +64,14 @@
       <button type="submit" class="btn btn-primary">Adicionar Usuário</button>
     </form>
 
+    <!-- Lista de usuários cadastrados -->
+    <div class="mt-4">
+      <h4>Usuários Cadastrados:</h4>
+      <ul id="userList">
+        <!-- Os usuários cadastrados serão listados aqui -->
+      </ul>
+    </div>
+
     <!-- Botões de ação -->
     <div class="mt-4">
       <button class="btn btn-success" id="generateButton">Gerar Raspadinha</button>
@@ -68,9 +80,12 @@
     </div>
 
     <!-- Campo para mostrar o link gerado -->
-    <div class="mt-4">
+    <div class="mt-4 input-group">
       <label for="generatedLink">Link Gerado:</label>
       <input type="text" id="generatedLink" class="form-control" readonly>
+      <div class="input-group-append">
+        <span class="input-group-text copy-icon" id="copyButton"><i class="fas fa-copy"></i></span>
+      </div>
     </div>
 
     <!-- Área para mostrar os links gerados -->
@@ -85,5 +100,14 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    // Código para copiar o link para a área de transferência
+    document.getElementById('copyButton').addEventListener('click', function() {
+      const copyText = document.getElementById('generatedLink');
+      copyText.select();
+      document.execCommand('copy');
+      alert('Link copiado para a área de transferência!');
+    });
+  </script>
 </body>
 </html>
