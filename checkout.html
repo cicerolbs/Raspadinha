@@ -69,11 +69,26 @@
       initiatePayment(quantity);
     });
 
-    function initiatePayment(quantity) {
-      // Aqui você pode fazer uma chamada AJAX ao seu servidor para iniciar o processo de pagamento
-      // Ou você pode usar qualquer outra lógica de pagamento que você tenha
-      console.log(`Iniciando pagamento para ${quantity} item(s).`);
-    }
+   function initiatePayment(quantity) {
+  // Aqui você pode fazer uma chamada HTTP para a sua função serverless
+  fetch('https://raspadinha.netlify.app/.netlify/functions/payment', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+    body: JSON.stringify({quantity: quantity})  // Envia a quantidade como um objeto JSON
+  })
+  .then(response => response.json())  // Converte a resposta para JSON
+  .then(data => {
+    console.log('Pagamento bem-sucedido:', data);
+    // Aqui você pode adicionar qualquer código para redirecionar o usuário para uma página de sucesso ou atualizar o estado da interface do usuário.
+  })
+  .catch((error) => {
+    console.error('Erro:', error);
+    // Aqui você pode adicionar qualquer código para informar o usuário sobre o erro, como exibir uma mensagem na interface do usuário.
+  });
+}
+
   </script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
