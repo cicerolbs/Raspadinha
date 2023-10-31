@@ -2,10 +2,12 @@
 <html lang="pt">
 <head>
   <meta charset="UTF-8">
-  <title>Painel de Estatísticas do Usuário</title>
+  <title>Estatísticas do Usuário</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
   <style>
-    .dashboard-box {
+    /* Estilos gerais */
+    .user-stats-box {
       padding: 20px;
       color: white;
       border-radius: 10px;
@@ -14,6 +16,15 @@
     }
     .blue-box {
       background-color: blue;
+    }
+    /* Estilos para responsividade */
+    @media (max-width: 768px) {
+      .user-stats-box {
+        font-size: 14px;
+      }
+      h1, h4 {
+        font-size: 18px;
+      }
     }
   </style>
 </head>
