@@ -5,6 +5,7 @@
   <title>Painel Administrativo</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
   <style>
     .dashboard-box {
       padding: 20px;
@@ -30,7 +31,6 @@
 <body>
   <div class="container">
     <h1 class="mt-4 mb-4">Painel Administrativo</h1>
-    
     <!-- Dashboard -->
     <div class="row">
       <div class="col-md-6 col-sm-12 mb-4">
@@ -46,7 +46,6 @@
         </div>
       </div>
     </div>
-    
     <!-- Formulário para adicionar usuários -->
     <h2 class="mb-4">Adicionar Novo Usuário</h2>
     <form>
@@ -63,7 +62,6 @@
       </div>
       <button type="submit" class="btn btn-primary">Adicionar Usuário</button>
     </form>
-
     <!-- Lista de usuários cadastrados -->
     <div class="mt-4">
       <h4>Usuários Cadastrados:</h4>
@@ -71,14 +69,12 @@
         <!-- Os usuários cadastrados serão listados aqui -->
       </ul>
     </div>
-
     <!-- Botões de ação -->
     <div class="mt-4">
       <button class="btn btn-success" id="generateButton">Gerar Raspadinha</button>
       <button class="btn btn-danger">Excluir Usuário</button>
       <button class="btn btn-warning">Resetar Tudo (Apenas para Testes)</button>
     </div>
-
   <!-- Campo para mostrar o link gerado -->
 <div class="mt-4 input-group">
   <label for="generatedLink">Link Gerado:</label>
@@ -88,8 +84,6 @@
     <span class="input-group-text" id="qrButton"><i class="fas fa-qrcode"></i></span>
   </div>
 </div>
-
-
     <!-- Área para mostrar os links gerados -->
     <div class="mt-4">
       <h4>Links Gerados:</h4>
@@ -98,7 +92,6 @@
       </ul>
     </div>
   </div>
-  
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -110,7 +103,6 @@ document.getElementById('copyButton').addEventListener('click', function() {
   document.execCommand('copy');
   alert('Link copiado para a área de transferência!');
 });
-
 // Código para gerar o QR Code
 document.getElementById('qrButton').addEventListener('click', function() {
   const link = document.getElementById('generatedLink').value;
