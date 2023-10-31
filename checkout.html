@@ -17,7 +17,7 @@
     .footer {
       text-align: center;
       padding: 1em;
-      position: relative;
+      position: absolute;
       bottom: 0;
       width: 100%;
     }
@@ -38,8 +38,8 @@
         <h2>Raspadinha do Vale</h2>
         <p>Descrição do produto aqui.</p>
         <label for="quantity">Escolher quantidade:</label>
-        <input type="number" id="quantity" name="quantity" min="1" max="10">
-        <button type="button" class="btn btn-primary" onclick="validateQuantity()">Pagar com Pix</button>
+        <input type="number" id="quantity" name="quantity" min="1" max="10" class="form-control" oninput="validateQuantity(this)">
+        <button type="button" class="btn btn-primary mt-2" onclick="validateQuantity()">Pagar com Pix</button>
       </div>
     </div>
   </div>
@@ -47,13 +47,12 @@
     Raspadinha do Vale - Todos os direitos reservados
   </div>
   <script>
-    function validateQuantity() {
-      const quantity = document.getElementById('quantity').value;
+    function validateQuantity(input) {
+      const quantity = input.value;
       if (quantity < 1 || quantity > 10 || isNaN(quantity)) {
+        input.value = "";
         alert('Por favor, insira uma quantidade válida entre 1 e 10.');
-        return;
       }
-      // Implementar a lógica de pagamento aqui
     }
   </script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
