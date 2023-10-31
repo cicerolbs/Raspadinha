@@ -10,12 +10,16 @@
       color: white;
       border-radius: 10px;
       text-align: center;
+      margin-bottom: 20px;
     }
     .green-box {
       background-color: green;
     }
     .red-box {
       background-color: red;
+    }
+    #generatedLink {
+      cursor: pointer;
     }
   </style>
 </head>
@@ -25,13 +29,13 @@
     
     <!-- Dashboard -->
     <div class="row">
-      <div class="col-md-6 mb-4">
+      <div class="col-md-6 col-sm-12 mb-4">
         <div class="dashboard-box green-box">
           <h5>Total de Raspadinhas Vendidas</h5>
           <p>0</p>
         </div>
       </div>
-      <div class="col-md-6 mb-4">
+      <div class="col-md-6 col-sm-12 mb-4">
         <div class="dashboard-box red-box">
           <h5>Total de Prêmios</h5>
           <p>0</p>
@@ -58,9 +62,23 @@
 
     <!-- Botões de ação -->
     <div class="mt-4">
-      <button class="btn btn-success">Gerar Raspadinha</button>
+      <button class="btn btn-success" id="generateButton">Gerar Raspadinha</button>
       <button class="btn btn-danger">Excluir Usuário</button>
       <button class="btn btn-warning">Resetar Tudo (Apenas para Testes)</button>
+    </div>
+
+    <!-- Campo para mostrar o link gerado -->
+    <div class="mt-4">
+      <label for="generatedLink">Link Gerado:</label>
+      <input type="text" id="generatedLink" class="form-control" readonly>
+    </div>
+
+    <!-- Área para mostrar os links gerados -->
+    <div class="mt-4">
+      <h4>Links Gerados:</h4>
+      <ul id="generatedLinksList">
+        <!-- Os links gerados serão adicionados aqui -->
+      </ul>
     </div>
   </div>
   
