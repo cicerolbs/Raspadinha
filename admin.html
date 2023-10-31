@@ -49,9 +49,9 @@
 <!-- Seção de Pedidos de Acesso -->
 <div class="mt-4">
   <h4>Pedidos de Acesso:</h4>
-  <ul id="accessRequestsList">
-    <!-- Os pedidos de acesso serão listados aqui -->
-  </ul>
+  <select id="accessRequestsSelect">
+    <!-- As opções serão preenchidas dinamicamente -->
+  </select>
   <button class="btn btn-success">Aprovar</button>
   <button class="btn btn-danger">Recusar</button>
 </div>
@@ -64,17 +64,11 @@
       </div>
       <button type="submit" class="btn btn-primary">Adicionar Usuário</button>
     </form>
-    <!-- Lista de usuários cadastrados -->
-    <div class="mt-4">
-      <h4>Usuários Cadastrados:</h4>
-      <ul id="userList">
-        <!-- Os usuários cadastrados serão listados aqui -->
-      </ul>
-    </div>
     <!-- Botões de ação -->
     <div class="mt-4">
       <button class="btn btn-success" id="generateButton">Gerar Raspadinha</button>
       <button class="btn btn-danger">Excluir Usuário</button>
+        <a href="user_stats.html" class="btn btn-info">Ver Estatísticas dos Usuários</a>
       <button class="btn btn-warning">Resetar Tudo (Apenas para Testes)</button>
     </div>
   <!-- Campo para mostrar o link gerado -->
