@@ -79,14 +79,16 @@
       <button class="btn btn-warning">Resetar Tudo (Apenas para Testes)</button>
     </div>
 
-    <!-- Campo para mostrar o link gerado -->
-    <div class="mt-4 input-group">
-      <label for="generatedLink">Link Gerado:</label>
-      <input type="text" id="generatedLink" class="form-control" readonly>
-      <div class="input-group-append">
-        <span class="input-group-text copy-icon" id="copyButton"><i class="fas fa-copy"></i></span>
-      </div>
-    </div>
+  <!-- Campo para mostrar o link gerado -->
+<div class="mt-4 input-group">
+  <label for="generatedLink">Link Gerado:</label>
+  <input type="text" id="generatedLink" class="form-control" readonly>
+  <div class="input-group-append">
+    <span class="input-group-text copy-icon" id="copyButton"><i class="fas fa-copy"></i></span>
+    <span class="input-group-text" id="qrButton"><i class="fas fa-qrcode"></i></span>
+  </div>
+</div>
+
 
     <!-- Área para mostrar os links gerados -->
     <div class="mt-4">
@@ -101,13 +103,24 @@
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script>
-    // Código para copiar o link para a área de transferência
-    document.getElementById('copyButton').addEventListener('click', function() {
-      const copyText = document.getElementById('generatedLink');
-      copyText.select();
-      document.execCommand('copy');
-      alert('Link copiado para a área de transferência!');
-    });
+  // Código para copiar o link para a área de transferência
+document.getElementById('copyButton').addEventListener('click', function() {
+  const copyText = document.getElementById('generatedLink');
+  copyText.select();
+  document.execCommand('copy');
+  alert('Link copiado para a área de transferência!');
+});
+
+// Código para gerar o QR Code
+document.getElementById('qrButton').addEventListener('click', function() {
+  const link = document.getElementById('generatedLink').value;
+  if (link) {
+    window.open(`https://api.qrserver.com/v1/create-qr-code/?data=${link}`, '_blank');
+  } else {
+    alert('Nenhum link gerado ainda!');
+  }
+});
+
   </script>
 </body>
 </html>
