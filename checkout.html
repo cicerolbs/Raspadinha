@@ -56,29 +56,24 @@
     }
 
     document.getElementById('payButton').addEventListener('click', function() {
-      document.getElementById('payButton').addEventListener('click', function() {
-  // Pega a quantidade selecionada pelo usuário
-  const quantity = document.getElementById('quantity').value;
+      // Pega a quantidade selecionada pelo usuário
+      const quantity = document.getElementById('quantity').value;
 
-  // Valida se a quantidade é um número válido
-  if (quantity < 1 || quantity > 10 || isNaN(quantity)) {
-    alert('Por favor, insira uma quantidade válida entre 1 e 10.');
-    return;
-  }
+      // Valida se a quantidade é um número válido
+      if (quantity < 1 || quantity > 10 || isNaN(quantity)) {
+        alert('Por favor, insira uma quantidade válida entre 1 e 10.');
+        return;
+      }
 
-  // Sua lógica de pagamento aqui
-  initiatePayment(quantity);
-});
-
-function initiatePayment(quantity) {
-  // Aqui você pode fazer uma chamada AJAX ao seu servidor para iniciar o processo de pagamento
-  // Ou você pode usar qualquer outra lógica de pagamento que você tenha
-  console.log(`Iniciando pagamento para ${quantity} item(s).`);
-}
-
+      // Sua lógica de pagamento aqui
+      initiatePayment(quantity);
     });
-    
-    
+
+    function initiatePayment(quantity) {
+      // Aqui você pode fazer uma chamada AJAX ao seu servidor para iniciar o processo de pagamento
+      // Ou você pode usar qualquer outra lógica de pagamento que você tenha
+      console.log(`Iniciando pagamento para ${quantity} item(s).`);
+    }
   </script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
