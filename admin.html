@@ -5,7 +5,6 @@
   <title>Painel Administrativo</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
   <style>
     .dashboard-box {
       padding: 20px;
@@ -46,40 +45,31 @@
         </div>
       </div>
     </div>
-<!-- Seção de Pedidos de Acesso -->
-<div class="mt-4">
-  <h4>Pedidos de Acesso:</h4>
-  <select id="accessRequestsSelect">
-    <!-- As opções serão preenchidas dinamicamente -->
-  </select>
-  <button class="btn btn-success">Aprovar</button>
-  <button class="btn btn-danger">Recusar</button>
-</div>
-      <div class="form-group">
-        <label for="accessLevel">Nível de Acesso</label>
-        <select class="form-control" id="accessLevel">
-          <option>Administrador</option>
-          <option>Vendedor</option>
-        </select>
-      </div>
-      <button type="submit" class="btn btn-primary">Adicionar Usuário</button>
-    </form>
+    <!-- Seção de Pedidos de Acesso -->
+    <div class="mt-4">
+      <h4>Pedidos de Acesso:</h4>
+      <select class="form-control" id="accessRequestsSelect">
+        <!-- As opções serão preenchidas dinamicamente -->
+      </select>
+      <button class="btn btn-success mt-2">Aprovar</button>
+      <button class="btn btn-danger mt-2">Recusar</button>
+    </div>
     <!-- Botões de ação -->
     <div class="mt-4">
       <button class="btn btn-success" id="generateButton">Gerar Raspadinha</button>
       <button class="btn btn-danger">Excluir Usuário</button>
-        <a href="user_stats.html" class="btn btn-info">Ver Estatísticas dos Usuários</a>
+      <a href="user_stats.html" class="btn btn-info">Ver Estatísticas dos Usuários</a>
       <button class="btn btn-warning">Resetar Tudo (Apenas para Testes)</button>
     </div>
-  <!-- Campo para mostrar o link gerado -->
-<div class="mt-4 input-group">
-  <label for="generatedLink">Link Gerado:</label>
-  <input type="text" id="generatedLink" class="form-control" readonly>
-  <div class="input-group-append">
-    <span class="input-group-text copy-icon" id="copyButton"><i class="fas fa-copy"></i></span>
-    <span class="input-group-text" id="qrButton"><i class="fas fa-qrcode"></i></span>
-  </div>
-</div>
+    <!-- Campo para mostrar o link gerado -->
+    <div class="mt-4 input-group">
+      <label for="generatedLink">Link Gerado:</label>
+      <input type="text" id="generatedLink" class="form-control" readonly>
+      <div class="input-group-append">
+        <span class="input-group-text copy-icon" id="copyButton"><i class="fas fa-copy"></i></span>
+        <span class="input-group-text" id="qrButton"><i class="fas fa-qrcode"></i></span>
+      </div>
+    </div>
     <!-- Área para mostrar os links gerados -->
     <div class="mt-4">
       <h4>Links Gerados:</h4>
