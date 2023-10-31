@@ -2,12 +2,11 @@
 <html lang="pt">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Adicionada a meta tag viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Estatísticas do Usuário</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
   <style>
-    /* Estilos gerais */
     .user-stats-box {
       padding: 20px;
       color: white;
@@ -18,7 +17,6 @@
     .blue-box {
       background-color: blue;
     }
-    /* Estilos para responsividade */
     @media (max-width: 768px) {
       .user-stats-box {
         font-size: 14px;
@@ -26,33 +24,27 @@
       h1, h4 {
         font-size: 18px;
       }
+      table {
+        font-size: 12px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h1 class="mt-4 mb-4">Painel de Estatísticas do Usuário</h1>
-
-    <!-- Dropdown para selecionar usuário -->
     <div class="form-group">
       <label for="userSelect">Selecione o Usuário:</label>
       <select class="form-control" id="userSelect">
-        <!-- As opções serão preenchidas dinamicamente -->
       </select>
     </div>
-
-    <!-- Estatísticas do usuário selecionado -->
-    <div class="dashboard-box blue-box">
+    <div class="user-stats-box blue-box">
       <h5>Estatísticas do Usuário Selecionado</h5>
       <p id="selectedUserStats">Selecione um usuário para ver as estatísticas.</p>
     </div>
-
-    <!-- Botão para excluir usuário -->
     <button class="btn btn-danger">Excluir Usuário</button>
-
-    <!-- Tabela com estatísticas de todos os usuários -->
     <h2 class="mt-4">Estatísticas de Todos os Usuários</h2>
-    <table class="table table-striped">
+    <table class="table table-striped table-responsive">
       <thead>
         <tr>
           <th>Nome do Usuário</th>
@@ -62,11 +54,9 @@
         </tr>
       </thead>
       <tbody id="allUserStats">
-        <!-- As estatísticas serão preenchidas dinamicamente -->
       </tbody>
     </table>
   </div>
-
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
