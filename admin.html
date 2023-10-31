@@ -4,26 +4,43 @@
   <meta charset="UTF-8">
   <title>Painel Administrativo</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .dashboard-box {
+      padding: 20px;
+      color: white;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .green-box {
+      background-color: green;
+    }
+    .red-box {
+      background-color: red;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
-    <h1>Painel Administrativo</h1>
+    <h1 class="mt-4 mb-4">Painel Administrativo</h1>
     
     <!-- Dashboard -->
     <div class="row">
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Total de Raspadinhas Vendidas</h5>
-            <p class="card-text">0</p>
-          </div>
+      <div class="col-md-6 mb-4">
+        <div class="dashboard-box green-box">
+          <h5>Total de Raspadinhas Vendidas</h5>
+          <p>0</p>
         </div>
       </div>
-      <!-- Você pode adicionar mais caixas aqui -->
+      <div class="col-md-6 mb-4">
+        <div class="dashboard-box red-box">
+          <h5>Total de Prêmios</h5>
+          <p>0</p>
+        </div>
+      </div>
     </div>
     
     <!-- Formulário para adicionar usuários -->
-    <h2>Adicionar Novo Usuário</h2>
+    <h2 class="mb-4">Adicionar Novo Usuário</h2>
     <form>
       <div class="form-group">
         <label for="username">Nome de Usuário</label>
