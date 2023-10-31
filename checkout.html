@@ -21,11 +21,6 @@
       bottom: 0;
       width: 100%;
     }
-    input[type="number"] {
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      padding: 6px 12px;
-    }
   </style>
 </head>
 <body>
@@ -38,7 +33,9 @@
         <h2>Raspadinha do Vale</h2>
         <p>Descrição do produto aqui.</p>
         <label for="quantity">Escolher quantidade:</label>
-        <input type="number" id="quantity" name="quantity" min="1" max="10" class="form-control" oninput="validateQuantity(this)">
+        <select id="quantity" name="quantity" class="form-control">
+          <option value="1" selected>1</option>
+        </select>
         <button type="button" class="btn btn-primary mt-2" id="payButton">Pagar com Pix</button>
       </div>
     </div>
@@ -47,48 +44,9 @@
     Raspadinha do Vale - Todos os direitos reservados
   </div>
   <script>
-    function validateQuantity(input) {
-      const quantity = input.value;
-      if (quantity < 1 || quantity > 10 || isNaN(quantity)) {
-        input.value = "";
-        alert('Por favor, insira uma quantidade válida entre 1 e 10.');
-      }
-    }
-
     document.getElementById('payButton').addEventListener('click', function() {
-      // Pega a quantidade selecionada pelo usuário
-      const quantity = document.getElementById('quantity').value;
-
-      // Valida se a quantidade é um número válido
-      if (quantity < 1 || quantity > 10 || isNaN(quantity)) {
-        alert('Por favor, insira uma quantidade válida entre 1 e 10.');
-        return;
-      }
-
-      // Sua lógica de pagamento aqui
-      initiatePayment(quantity);
+      window.location.href = "https://nubank.com.br/pagar/198sgk/nkWoRMRcYs";
     });
-
-   function initiatePayment(quantity) {
-  // Aqui você pode fazer uma chamada HTTP para a sua função serverless
-  fetch('https://raspadinha.netlify.app/.netlify/functions/payment', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-    body: JSON.stringify({quantity: quantity})  // Envia a quantidade como um objeto JSON
-  })
-  .then(response => response.json())  // Converte a resposta para JSON
-  .then(data => {
-    console.log('Pagamento bem-sucedido:', data);
-    // Aqui você pode adicionar qualquer código para redirecionar o usuário para uma página de sucesso ou atualizar o estado da interface do usuário.
-  })
-  .catch((error) => {
-    console.error('Erro:', error);
-    // Aqui você pode adicionar qualquer código para informar o usuário sobre o erro, como exibir uma mensagem na interface do usuário.
-  });
-}
-
   </script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
